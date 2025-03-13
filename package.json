@@ -1,7 +1,7 @@
 {
-  "name": "express-mongo-typescript-rest-api-template",
+  "name": "express-mongo-typescript-rest-api-starter",
   "version": "1.0.0",
-  "description": "Template",
+  "description": "Starter",
   "private": true,
   "scripts": {
     "build": "tsc",
@@ -17,7 +17,6 @@
     "bcryptjs": "^2.4.3",
     "compression": "^1.8.0",
     "cors": "^2.8.5",
-    "date-fns": "^4.1.0",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "helmet": "^7.2.0",
