@@ -15,7 +15,6 @@
 📦 emt-rest-api
  ┣ 📂 src
  ┃ ┣ 📂 config # Project related configuration files
- ┃ ┃ ┣ 📜 db.config.ts
  ┃ ┃ ┣ 📜 env.config.ts
  ┃ ┃ ┗ 📜 logger.config.ts
  ┃ ┣ 📂 controllers # Handle HTTP request logic.
