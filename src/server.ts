@@ -1,8 +1,8 @@
 import 'dotenv/config';
 import { Server } from 'http';
 import mongoose from 'mongoose';
-import { envConfig } from './config/env.config';
-import { app } from './app';
+import { envConfig } from '@/config/env.config';
+import { app } from '@/app';
 
 let server: Server;
 
