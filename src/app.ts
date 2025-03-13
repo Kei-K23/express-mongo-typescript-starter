@@ -1,7 +1,7 @@
 import express from 'express';
 import morgan from 'morgan';
 import logger from '@/config/logger.config';
-import { errorHandler } from '@/middlewares/errorHandler';
+import { errorHandler } from '@/middlewares/errorHandler.middleware';
 import { ApiError } from './utils/ApiError';
 
 const app = express();
