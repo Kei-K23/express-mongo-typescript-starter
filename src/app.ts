@@ -2,7 +2,6 @@ import express from 'express';
 import morgan from 'morgan';
 import logger from '@/config/logger.config';
 import { errorHandler } from '@/middlewares/errorHandler.middleware';
-import { ApiError } from './utils/ApiError';
 
 const app = express();
 
@@ -15,11 +14,9 @@ app.use(
   }),
 );
 
-app.get('/', (req, res) => {
-  throw new ApiError('this is error', 400);
-});
+app.get('/', (req, res) => {});
 
-// Global Error Middleware
+// Global error handling middleware
 app.use(errorHandler);
 
 export { app };

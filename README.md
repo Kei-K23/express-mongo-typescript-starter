@@ -13,7 +13,8 @@
 
 ```bash
 📦 emt-rest-api
- ┣ 📂 src
+ ┣ 📂 logs # Application logs files
+ ┣ 📂 src # Project source folder
  ┃ ┣ 📂 config # Project related configuration files
  ┃ ┃ ┣ 📜 env.config.ts
  ┃ ┃ ┗ 📜 logger.config.ts
