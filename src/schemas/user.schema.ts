@@ -13,6 +13,15 @@ export const createUserSchema = z.object({
     .strict(),
 });
 
+export const loginSchema = z.object({
+  body: z
+    .object({
+      email: z.string().email('Invalid email format'),
+      password: z.string().min(6, 'Password must be at least 6 character long'),
+    })
+    .strict(),
+});
+
 export const updateUserSchema = z.object({
   body: z
     .object({
