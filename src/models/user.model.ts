@@ -83,6 +83,17 @@ const userSchema = new mongoose.Schema<UserDocs>(
   // createdAt and updatedAt timestamps
   {
     timestamps: true,
+    toJSON: {
+      transform(_doc, returnedObj) {
+        // Make sure not to export password and change default _id to id
+        returnedObj.id = returnedObj._id;
+        delete returnedObj._id;
+        delete returnedObj.password;
+        delete returnedObj.__v;
+
+        return returnedObj;
+      },
+    },
   },
 );
 

@@ -25,7 +25,6 @@ export default class AuthController {
       const token = jwt.sign(
         {
           userId: user.id,
-          userRole: user.role,
         },
         envConfig.jwt.secretKey,
         jwtSignOptions,

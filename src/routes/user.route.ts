@@ -1,5 +1,7 @@
 import UserController from '@/controllers/user.controller';
-import { asyncHandler, validate } from '@/middlewares';
+import { asyncHandler, checkJWT, validate } from '@/middlewares';
+import { checkRoles } from '@/middlewares/checkRoles.middleware';
+import { USER_ROLE } from '@/models/user.model';
 import {
   createUserSchema,
   getUserByIdSchema,
@@ -11,24 +13,33 @@ const router = Router();
 
 router.post(
   '/',
-  validate(createUserSchema),
+  [checkJWT, checkRoles([USER_ROLE.ADMIN]), validate(createUserSchema)],
   asyncHandler(UserController.newUser),
 );
-router.get('/', asyncHandler(UserController.listAll));
+router.get(
+  '/',
+  [checkJWT, checkRoles([USER_ROLE.ADMIN])],
+  asyncHandler(UserController.listAll),
+);
 router.get(
   '/:id',
+  [checkJWT, checkRoles([USER_ROLE.ADMIN]), validate(getUserByIdSchema)],
   validate(getUserByIdSchema),
   asyncHandler(UserController.getOneById),
 );
 router.patch(
   '/:id',
-  validate(getUserByIdSchema),
-  validate(updateUserSchema),
+  [
+    checkJWT,
+    checkRoles([USER_ROLE.ADMIN]),
+    validate(getUserByIdSchema),
+    validate(updateUserSchema),
+  ],
   asyncHandler(UserController.editUser),
 );
 router.delete(
   '/:id',
-  validate(getUserByIdSchema),
+  [checkJWT, checkRoles([USER_ROLE.ADMIN]), validate(getUserByIdSchema)],
   asyncHandler(UserController.deleteUser),
 );
 
