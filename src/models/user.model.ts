@@ -65,7 +65,15 @@ const userSchema = new mongoose.Schema<UserDocs>(
     },
   },
   // createdAt and updatedAt timestamps
-  { timestamps: true },
+  {
+    timestamps: true,
+    toJSON: {
+      transform(_doc, ret) {
+        delete ret.password;
+        return ret;
+      },
+    },
+  },
 );
 
 // Hash password before saving
@@ -93,13 +101,7 @@ userSchema.statics.build = (attr: IUser) => {
   return new User(attr);
 };
 
-userSchema.set('toJSON', {
-  transform: (_document, returnObj) => {
-    returnObj.id = returnObj._id.toString();
-    delete returnObj._id; // Delete mongodb _id and return id
-    delete returnObj.__v; // Delete mongodb default return value
-    delete returnObj.password;
-  },
-});
-
-const User = mongoose.model<UserDocs, UserModelInterface>('User', userSchema);
+export const User = mongoose.model<UserDocs, UserModelInterface>(
+  'User',
+  userSchema,
+);
