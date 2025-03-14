@@ -1,57 +1,136 @@
-# Express Mongo TypeScript Rest API Starter
+# Express Mongo TypeScript REST API Starter
 
-Express Mongo TypeScript Rest API Starter Project Template with a lot of predefined setup and configuration for you to just quickly start writing your business logic code.
+A **starter template** for building RESTful APIs using **Express.js**, **MongoDB**, **Mongoose** and **TypeScript**. This project provides a pre-configured project structure with best practices, allowing you to focus on writing your business logic.
 
-## 🚀 Best Practices Followed:
+## 🚀 Features & Best Practices
 
-- ✅ Layered architecture (controllers, services, models, middlewares).
-- ✅ Strict TypeScript usage for type safety.
-- ✅ Environment variable management using dotenv.
-- ✅ Security best practices (CORS, Helmet).
-- ✅ Error handling middleware for cleaner code.
-- ✅ Production-ready folder structure for scalability.
+- ✅ **Layered architecture** (controllers, services, models, middlewares).
+- ✅ **Strict TypeScript usage** for type safety.
+- ✅ **Environment variable management** using `dotenv`.
+- ✅ **Security best practices** (CORS, Helmet, etc.).
+- ✅ **Centralized error handling middleware** for cleaner code.
+- ✅ **Production-ready folder structure** for scalability.
+- ✅ **Pre-configured logging** using Winston.
+- ✅ **Validation middleware** for request validation.
+- ✅ **ESLint & Prettier** configured for consistent code style.
+- ✅ **Easier development with Nodemon** automatically restarting the application when changes are detected.
 
-## Basic files and folders structure of Express Mongo TypeScript Rest API Starter Project
+## 📂 Project Structure
 
-```bash
+```
 📦 emt-rest-api
- ┣ 📂 logs # Application logs files
- ┣ 📂 src # Project source folder
- ┃ ┣ 📂 config # Project related configuration files
+ ┣ 📂 logs                    # Application log files
+ ┣ 📂 src                     # Project source folder
+ ┃ ┣ 📂 config                # Project configuration files
  ┃ ┃ ┣ 📜 env.config.ts
  ┃ ┃ ┗ 📜 logger.config.ts
- ┃ ┣ 📂 exceptions # Exceptions response classes
- ┃ ┃ ┣ 📜 apiError.ts # Main api error that extend Error class
- ┃ ┃ ┗ 📜 forbiddenError.ts
- ┃ ┃ ┗ 📜 notFoundError.ts
+ ┃ ┣ 📂 exceptions            # Exception response classes
+ ┃ ┃ ┣ 📜 apiError.ts
+ ┃ ┃ ┣ 📜 forbiddenError.ts
+ ┃ ┃ ┣ 📜 notFoundError.ts
  ┃ ┃ ┗ 📜 unauthorizedError.ts
- ┃ ┣ 📂 controllers # Handle HTTP request logic.
+ ┃ ┣ 📂 controllers           # Handle HTTP request logic
  ┃ ┃ ┣ 📜 user.controller.ts
  ┃ ┃ ┗ 📜 auth.controller.ts
- ┃ ┣ 📂 middlewares # Reusable middlewares
+ ┃ ┣ 📂 middlewares           # Reusable middlewares
  ┃ ┃ ┣ 📜 auth.middleware.ts
  ┃ ┃ ┣ 📜 errorHandler.middleware.ts
  ┃ ┃ ┗ 📜 validate-resources.middleware.ts
- ┃ ┣ 📂 models # Defines Mongoose schemas and models
+ ┃ ┣ 📂 models                # Defines Mongoose schemas and models
  ┃ ┃ ┣ 📜 user.model.ts
  ┃ ┃ ┗ 📜 session.model.ts
- ┃ ┣ 📂 routes # Route defining related files
+ ┃ ┣ 📂 routes                # Route definitions
  ┃ ┃ ┣ 📜 user.routes.ts
  ┃ ┃ ┣ 📜 auth.routes.ts
  ┃ ┃ ┗ 📜 index.ts
- ┃ ┣ 📂 services # Business logic should be handled here
+ ┃ ┣ 📂 services              # Business logic implementation
  ┃ ┃ ┣ 📜 user.service.ts
  ┃ ┃ ┗ 📜 auth.service.ts
- ┃ ┣ 📂 utils # Utility/helper functions (e.g., password hashing, response formatting).
+ ┃ ┣ 📂 utils                 # Utility/helper functions
  ┃ ┃ ┗ 📜 hashPassword.ts
- ┃ ┣ 📜 app.ts # Express App Setup
- ┃ ┗ 📜 server.ts # Server Entry Point
- ┣ 📂 tests # Test related files
+ ┃ ┣ 📜 app.ts                # Express App Setup
+ ┃ ┗ 📜 server.ts             # Server Entry Point
+ ┣ 📂 tests                   # Test-related files
  ┃ ┣ 📜 user.test.ts
  ┃ ┗ 📜 auth.test.ts
- ┣ 📜 .env
- ┣ 📜 .gitignore
- ┣ 📜 package.json
- ┣ 📜 tsconfig.json
- ┗ 📜 README.md
+ ┣ 📜 .env                    # Environment variables
+ ┣ 📜 .gitignore              # Git ignored files
+ ┣ 📜 package.json            # Project dependencies
+ ┣ 📜 tsconfig.json           # TypeScript configuration
+ ┗ 📜 README.md               # Project documentation
 ```
+
+## 🛠 Installation & Setup
+
+### 1️⃣ Prerequisites
+
+Make sure you have the following installed:
+
+- **Node.js** (>=16.x)
+- **MongoDB** (running locally or via a cloud provider)
+
+### 2️⃣ Clone the repository
+
+```sh
+git clone https://github.com/Kei-K23/express-mongo-typescript-starter.git
+cd express-mongo-typescript-starter
+rm -rf .git # Remove the .git folder and init your own .git
+git init
+```
+
+### 3️⃣ Install dependencies
+
+```sh
+npm install
+```
+
+### 4️⃣ Set up environment variables
+
+Rename `.env.example` to `.env` and update the values accordingly:
+
+### 5️⃣ Start the development server
+
+```sh
+npm run dev
+```
+
+By default, the server will run at **`http://localhost:3000`**.
+
+## 🚀 Running in Production
+
+To run the project in **production mode**:
+
+```sh
+npm run build
+npm start
+```
+
+## 🔍 API Endpoints
+
+### Authentication Routes
+
+| Method | Endpoint             | Description         |
+| ------ | -------------------- | ------------------- |
+| POST   | `/api/auth/register` | Register a new user |
+| POST   | `/api/auth/login`    | User login          |
+
+### User Routes
+
+| Method | Endpoint         | Description           |
+| ------ | ---------------- | --------------------- |
+| GET    | `/api/users`     | Get list of all users |
+| GET    | `/api/users/:id` | Get user by ID        |
+| PATCH  | `/api/users/:id` | Update user details   |
+| DELETE | `/api/users/:id` | Delete user           |
+
+## 🎨 Code Formatting
+
+ESLint and Prettier are configured. Run the following command to format code:
+
+```sh
+npm run lint
+```
+
+## 📌 Contributing
+
+Contributions are welcome! Feel free to fork this repository and submit a pull request.
