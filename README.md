@@ -1,5 +1,7 @@
 # Express Mongo TypeScript Rest API Starter
 
+Express Mongo TypeScript Rest API Starter Project Template with a lot of predefined setup and configuration for you to just quickly start writing your business logic code.
+
 ## 🚀 Best Practices Followed:
 
 - ✅ Layered architecture (controllers, services, models, middlewares).
