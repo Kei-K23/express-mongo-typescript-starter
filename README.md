@@ -29,7 +29,7 @@ A **starter template** for building RESTful APIs using **Express.js**, **MongoDB
  ┃ ┃ ┣ 📜 forbiddenError.ts
  ┃ ┃ ┣ 📜 notFoundError.ts
  ┃ ┃ ┗ 📜 unauthorizedError.ts
- ┃ ┣ 📂 controllers           # Handle HTTP request logic
+ ┃ ┣ 📂 controllers           # Handle request and business logic implementation
  ┃ ┃ ┣ 📜 user.controller.ts
  ┃ ┃ ┗ 📜 auth.controller.ts
  ┃ ┣ 📂 middlewares           # Reusable middlewares
@@ -43,16 +43,11 @@ A **starter template** for building RESTful APIs using **Express.js**, **MongoDB
  ┃ ┃ ┣ 📜 user.routes.ts
  ┃ ┃ ┣ 📜 auth.routes.ts
  ┃ ┃ ┗ 📜 index.ts
- ┃ ┣ 📂 services              # Business logic implementation
- ┃ ┃ ┣ 📜 user.service.ts
- ┃ ┃ ┗ 📜 auth.service.ts
+ ┃ ┣ 📂 schemas               # Zod schemas for handling validation
+ ┃ ┃ ┣ 📜 user.schema.ts
  ┃ ┣ 📂 utils                 # Utility/helper functions
- ┃ ┃ ┗ 📜 hashPassword.ts
  ┃ ┣ 📜 app.ts                # Express App Setup
  ┃ ┗ 📜 server.ts             # Server Entry Point
- ┣ 📂 tests                   # Test-related files
- ┃ ┣ 📜 user.test.ts
- ┃ ┗ 📜 auth.test.ts
  ┣ 📜 .env                    # Environment variables
  ┣ 📜 .gitignore              # Git ignored files
  ┣ 📜 package.json            # Project dependencies
@@ -82,6 +77,8 @@ git init
 
 ```sh
 npm install
+# or
+pnpm install
 ```
 
 ### 4️⃣ Set up environment variables
@@ -92,6 +89,8 @@ Rename `.env.example` to `.env` and update the values accordingly:
 
 ```sh
 npm run dev
+# or
+pnpm run dev
 ```
 
 By default, the server will run at **`http://localhost:3000`**.
@@ -103,6 +102,9 @@ To run the project in **production mode**:
 ```sh
 npm run build
 npm start
+# or
+pnpm run build
+pnpm start
 ```
 
 ## 🔍 API Endpoints
