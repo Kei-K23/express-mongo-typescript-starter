@@ -1,5 +1,5 @@
 import logger from '@/config/logger.config';
-import { ApiError } from '@/utils/ApiError';
+import { ApiError } from '@/exceptions/ApiError';
 import { NextFunction, Request, Response } from 'express';
 import mongoose from 'mongoose';
 import { ZodError } from 'zod';

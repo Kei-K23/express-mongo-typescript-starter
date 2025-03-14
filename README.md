@@ -18,13 +18,18 @@
  ┃ ┣ 📂 config # Project related configuration files
  ┃ ┃ ┣ 📜 env.config.ts
  ┃ ┃ ┗ 📜 logger.config.ts
+ ┃ ┣ 📂 exceptions # Exceptions response classes
+ ┃ ┃ ┣ 📜 apiError.ts # Main api error that extend Error class
+ ┃ ┃ ┗ 📜 forbiddenError.ts
+ ┃ ┃ ┗ 📜 notFoundError.ts
+ ┃ ┃ ┗ 📜 unauthorizedError.ts
  ┃ ┣ 📂 controllers # Handle HTTP request logic.
  ┃ ┃ ┣ 📜 user.controller.ts
  ┃ ┃ ┗ 📜 auth.controller.ts
  ┃ ┣ 📂 middlewares # Reusable middlewares
  ┃ ┃ ┣ 📜 auth.middleware.ts
- ┃ ┃ ┣ 📜 error.middleware.ts
- ┃ ┃ ┗ 📜 logger.middleware.ts
+ ┃ ┃ ┣ 📜 errorHandler.middleware.ts
+ ┃ ┃ ┗ 📜 validate-resources.middleware.ts
  ┃ ┣ 📂 models # Defines Mongoose schemas and models
  ┃ ┃ ┣ 📜 user.model.ts
  ┃ ┃ ┗ 📜 session.model.ts
@@ -36,7 +41,6 @@
  ┃ ┃ ┣ 📜 user.service.ts
  ┃ ┃ ┗ 📜 auth.service.ts
  ┃ ┣ 📂 utils # Utility/helper functions (e.g., password hashing, response formatting).
- ┃ ┃ ┣ 📜 responseHandler.ts
  ┃ ┃ ┗ 📜 hashPassword.ts
  ┃ ┣ 📜 app.ts # Express App Setup
  ┃ ┗ 📜 server.ts # Server Entry Point
