@@ -13,6 +13,27 @@ export const createUserSchema = z.object({
     .strict(),
 });
 
+export const updateUserSchema = z.object({
+  body: z
+    .object({
+      username: z
+        .string()
+        .min(3, 'Username must be at least 3 character long')
+        .optional(),
+      name: z
+        .string()
+        .min(3, 'Name must be at least 3 character long')
+        .optional(),
+      email: z.string().email('Invalid email format').optional(),
+      password: z
+        .string()
+        .min(6, 'Password must be at least 6 character long')
+        .optional(),
+      role: z.nativeEnum(USER_ROLE).default(USER_ROLE.USER).optional(),
+    })
+    .strict(),
+});
+
 export const getUserByIdSchema = z.object({
   params: z
     .object({

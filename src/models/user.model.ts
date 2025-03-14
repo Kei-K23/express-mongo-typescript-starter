@@ -83,31 +83,20 @@ const userSchema = new mongoose.Schema<UserDocs>(
   // createdAt and updatedAt timestamps
   {
     timestamps: true,
-    toJSON: {
-      transform(_doc, returnedObj) {
-        // Make sure not to export password and change default _id to id
-        returnedObj.id = returnedObj._id;
-        delete returnedObj._id;
-        delete returnedObj.password;
-        delete returnedObj.__v;
-
-        return returnedObj;
-      },
-    },
   },
 );
 
 // Hash password before saving
 userSchema.pre('save', async function (next) {
   // If password is not modified, then return
-  if (!this.isModified('password') || !this.password) next();
+  if (!this.isModified('password') || !this.password) return next();
 
   try {
     const salt = await bcrypt.genSalt(12);
     this.password = await bcrypt.hash(this.password, salt);
-    next();
+    return next();
   } catch (error: any) {
-    next(error);
+    return next(error);
   }
 });
 
@@ -121,6 +110,18 @@ userSchema.methods.verifyPassword = async function (
 userSchema.statics.build = (attr: IUser) => {
   return new User(attr);
 };
+
+userSchema.set('toJSON', {
+  transform(_doc, returnedObj) {
+    // Make sure not to export password and change default _id to id
+    returnedObj.id = returnedObj._id;
+    delete returnedObj._id;
+    delete returnedObj.password;
+    delete returnedObj.__v;
+
+    return returnedObj;
+  },
+});
 
 export const User = mongoose.model<UserDocs, UserModelInterface>(
   'User',

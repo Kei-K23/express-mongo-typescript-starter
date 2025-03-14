@@ -46,4 +46,45 @@ export default class UserController {
       next(error);
     }
   };
+
+  static editUser = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const update = req.body;
+      const user = await User.findByIdAndUpdate(req.params.id, update, {
+        new: true, // Return updated data
+        runValidators: true,
+        context: 'query',
+      });
+
+      if (!user) {
+        throw new NotFoundError(`User with ID ${req.params.id} not found`);
+      }
+
+      res.status(200).type('json').json(user);
+    } catch (error) {
+      logger.error(error);
+      next(error);
+    }
+  };
+
+  static deleteUser = async (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ) => {
+    try {
+      const user = await User.findByIdAndDelete(req.params.id, {
+        new: true,
+      });
+
+      if (!user) {
+        throw new NotFoundError(`User with ID ${req.params.id} not found`);
+      }
+
+      res.status(204).type('json').send();
+    } catch (error) {
+      logger.error(error);
+      next(error);
+    }
+  };
 }
