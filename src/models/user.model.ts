@@ -48,6 +48,13 @@ const userSchema = new mongoose.Schema<UserDocs>(
         message: 'Username is already taken',
       },
     },
+    password: {
+      type: String,
+      required: true,
+      trim: true,
+      minlength: [6, 'Password too short'],
+      maxlength: [20, 'Password too long'],
+    },
     role: {
       type: String,
       required: true,
@@ -62,15 +69,29 @@ const userSchema = new mongoose.Schema<UserDocs>(
       lowercase: true,
       minlength: [8, 'Email too short'],
       maxlength: [255, 'Email too long'],
+      validate: {
+        // Check username is already taken or not
+        validator: async function (v: string): Promise<boolean> {
+          const doc = await User.findOne({ email: v });
+          if (doc) return doc.id === this.id;
+          else return Boolean(!doc);
+        },
+        message: 'Email is already taken',
+      },
     },
   },
   // createdAt and updatedAt timestamps
   {
     timestamps: true,
     toJSON: {
-      transform(_doc, ret) {
-        delete ret.password;
-        return ret;
+      transform(_doc, returnedObj) {
+        // Make sure not to export password and change default _id to id
+        returnedObj.id = returnedObj._id;
+        delete returnedObj._id;
+        delete returnedObj.password;
+        delete returnedObj.__v;
+
+        return returnedObj;
       },
     },
   },

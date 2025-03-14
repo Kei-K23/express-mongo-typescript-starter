@@ -1,4 +1,4 @@
-import { ApiError } from './ApiError';
+import { ApiError } from './apiError';
 
 export class NotFoundError extends ApiError {
   constructor(message: string) {
