@@ -4,14 +4,11 @@
   "description": "Starter",
   "private": true,
   "scripts": {
-    "build": "tsc && tsc-alias",
     "start": "node dist/server.js",
     "dev": "nodemon",
-    "lint": "eslint . --ext .ts",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "typecheck": "tsc --noEmit"
+    "lint": "eslint . --ext .ts --ignore-pattern dist/",
+    "typecheck": "tsc --noEmit",
+    "build": "npm run lint && npm run typecheck && tsc && tsc-alias"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
