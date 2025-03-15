@@ -1,15 +1,11 @@
 import logger from '@/config/logger.config';
-import { NotFoundError } from '@/exceptions';
-import { User } from '@/models/user.model';
+import { UserService } from '@/services/user.service';
 import { NextFunction, Request, Response } from 'express';
 
 export default class UserController {
   static newUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      // Build user document
-      const user = User.build(req.body);
-      // Save to database
-      await user.save();
+      const user = await UserService.createUser(req.body);
 
       res.status(201).type('json').json(user);
     } catch (error) {
@@ -20,7 +16,7 @@ export default class UserController {
 
   static listAll = async (_req: Request, res: Response, next: NextFunction) => {
     try {
-      const users = await User.find();
+      const users = await UserService.getAllUsers();
       res.status(200).type('json').json(users);
     } catch (error) {
       logger.error(error);
@@ -34,12 +30,7 @@ export default class UserController {
     next: NextFunction,
   ) => {
     try {
-      const user = await User.findById(req.params.id);
-
-      if (!user) {
-        throw new NotFoundError(`User with ID ${req.params.id} not found`);
-      }
-
+      const user = await UserService.getOneById(req.params.id);
       res.status(200).type('json').json(user);
     } catch (error) {
       logger.error(error);
@@ -49,17 +40,7 @@ export default class UserController {
 
   static editUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const update = req.body;
-      const user = await User.findByIdAndUpdate(req.params.id, update, {
-        new: true, // Return updated data
-        runValidators: true,
-        context: 'query',
-      });
-
-      if (!user) {
-        throw new NotFoundError(`User with ID ${req.params.id} not found`);
-      }
-
+      const user = await UserService.updateUser(req.params.id, req.body);
       res.status(200).type('json').json(user);
     } catch (error) {
       logger.error(error);
@@ -73,14 +54,7 @@ export default class UserController {
     next: NextFunction,
   ) => {
     try {
-      const user = await User.findByIdAndDelete(req.params.id, {
-        new: true,
-      });
-
-      if (!user) {
-        throw new NotFoundError(`User with ID ${req.params.id} not found`);
-      }
-
+      await UserService.deleteUser(req.params.id);
       res.status(204).type('json').send();
     } catch (error) {
       logger.error(error);
