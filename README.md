@@ -4,7 +4,7 @@ A **starter template** for building RESTful APIs using **Express.js**, **MongoDB
 
 ## 🚀 Features & Best Practices
 
-- ✅ **Layered architecture** (controllers, services, models, middlewares).
+- ✅ **Layered architecture** (controllers, services, models, middlewares, schemas).
 - ✅ **Strict TypeScript usage** for type safety.
 - ✅ **Environment variable management** using `dotenv`.
 - ✅ **Security best practices** (CORS, Helmet, etc.).
@@ -45,6 +45,9 @@ A **starter template** for building RESTful APIs using **Express.js**, **MongoDB
  ┃ ┃ ┗ 📜 index.ts
  ┃ ┣ 📂 schemas               # Zod schemas for handling validation
  ┃ ┃ ┣ 📜 user.schema.ts
+ ┃ ┣ 📂 services              # Handle business logic related things here
+ ┃ ┃ ┣ 📜 auth.service.ts
+ ┃ ┃ ┣ 📜 user.service.ts
  ┃ ┣ 📂 utils                 # Utility/helper functions
  ┃ ┣ 📜 app.ts                # Express App Setup
  ┃ ┗ 📜 server.ts             # Server Entry Point
@@ -61,7 +64,7 @@ A **starter template** for building RESTful APIs using **Express.js**, **MongoDB
 
 Make sure you have the following installed:
 
-- **Node.js** (>=16.x)
+- **Node.js** (>=18.x)
 - **MongoDB** (running locally or via a cloud provider)
 
 ### 2️⃣ Clone the repository
